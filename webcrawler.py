@@ -41,19 +41,33 @@ def store_contents(contents):
         f.write('<!DOCTYPE html>')
         f.write('<meta charset="utf-8">')
         for id in contents:
-            f.write('<h3><a href=%s>%s</a><h3>' % (id, contents[id][0]))
+            f.write('<h3><a href=%s>%s</a></h3>' % (id, contents[id][0]))
             for r in contents[id][1]:
-                f.write('<p class="dt">%s</p>%s' % (r, contents[id][1][r]))
+                f.write('<p class="reply_content"><span class="dt">%s</span><br>%s</p>' % (r, contents[id][1][r]))
         f.close()
         print u'成功保存文件'
     except:
         print u'保存文件失败'
 
 
+def store_contents2(contents):
+    try:
+        import codecs
+        from jinja2 import Environment, FileSystemLoader
+        env = Environment(loader=FileSystemLoader('./templates'))
+        template = env.get_template('contents_list.html')
+        result = template.render(contents=contents)
+        f = codecs.open('result2.html', 'w', 'utf-8')
+        f.write(result)
+        f.close()
+    except Exception as e:
+        print u'保存文件失败\n%s' % e
+
 
 def main():
     all = get_all_contents(get_page('http://www.douban.com/group/topic/9267121/?start=81300'))
-    store_contents(all)
+    #store_contents(all)
+    store_contents2(all)
 
 
 if __name__ == '__main__':

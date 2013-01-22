@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>{% block title %}{% endblock %}</title>
+<link rel="stylesheet" type="text/css" href="static/vendor/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="static/css/styles.css">
+
+<div class="container">
+{% for id in contents %}
+    <div class="row">
+        <div class="span12">
+            <h3><a href="{{ id }}">{{ contents[id][0] }}</a></h3>
+        </div>
+    </div>
+
+    {% for r in contents[id][1] %}
+    <div class = "row">
+        <div class="span12"><p class = "dt"> {{ r }}</p></div>
+    </div>
+    <div class = "row">
+        <div class="span12">{{ contents[id][1][r] }}</div>
+    </div>
+    {% endfor %}
+{% endfor %}
+</div>

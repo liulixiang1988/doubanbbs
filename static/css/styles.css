@@ -1,0 +1,16 @@
+h3{
+	font-family: 'Georgia', serif; 
+	margin: 0;
+	border-bottom: 2px solid #eee;
+	padding: 0;
+}
+
+.dt {
+	width:100%;
+	background-color:#ccf;
+	padding: 0;
+}
+
+.dt:hover { 
+	background-color:#ccc; 
+}
